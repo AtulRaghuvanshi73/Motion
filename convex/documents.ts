@@ -1,7 +1,7 @@
 import { v } from "convex/values";
 import { mutation, query} from "./_generated/server";
 import { Doc, Id } from "./_generated/dataModel";
-import { title } from "process";
+import { exit, title } from "process";
 
 export const archive = mutation({
     args: { id: v.id("documents")},
@@ -303,6 +303,35 @@ export const update = mutation({
 
         const document = await ctx.db.patch(args.id, {
             ...rest,
+        });
+
+        return document;
+    }
+})
+
+export const removeIcon = mutation({
+    args: {id: v.id("documents") },
+    handler: async (ctx, args) => {
+        const identity = await ctx.auth.getUserIdentity();
+
+        if(!identity){
+            throw new Error("Unauthenticated");
+        }
+
+        const userId = identity.subject;
+
+        const existingDocument  = await ctx.db.get(args.id);
+
+        if(!existingDocument){
+            throw new Error("Document not found");
+        }
+
+        if(existingDocument.userId !== userId){
+            throw new Error("Unauthorized");
+        }
+
+        const document = await ctx.db.patch(args.id, {
+            icon:undefined,
         });
 
         return document;
