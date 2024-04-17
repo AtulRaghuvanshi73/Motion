@@ -6,6 +6,7 @@ import { Id } from "@/convex/_generated/dataModel";
 import { Toolbar } from "@/components/ui/toolbar";
 import { Cover } from "@/components/ui/cover";
 import { Skeleton } from "@/components/ui/skeleton";
+import Editing from "@/components/editing";
 
 interface DocumentIdPageProps {
   params: {
@@ -44,7 +45,7 @@ const DocumentIdPage = ({
       <Cover url={document.coverImage} />
         <div className="md:max-w-3xl lg:mdmax-w-4xl mx-auto">
           <Toolbar initialData={document}/>
-        
+          <Editing />
         </div>
     </div>
   )
