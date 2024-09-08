@@ -1,5 +1,5 @@
-## Deployed Project 
-https://663ba15fd13d0a133597da3b--zesty-rugelach-3296db.netlify.app/
+## Deployed Project
+<a href="https://zesty-rugelach-3296db.netlify.app/">Click to see the website preview!</a>
 
 ## Getting Started
 
